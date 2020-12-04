@@ -1,16 +1,34 @@
-import React, { useContext } from "react"
-import { ThemeCtx, LanguageCtx } from "@/config/context/index.ts"
+import React, { useEffect, useState } from "react"
+import TaskBar from "./components/TaskBar"
+import WorkSpace from "./components/WorkSpace"
+import { ClientCtx } from "@/config/context/client"
+// import { ThemeCtx, LanguageCtx } from "@/config/context/index.ts"
 
 import styles from "./styles.scss"
 
 export default function Desktop() {
-  const { type, toggleTheme } = useContext(ThemeCtx)
-  const ctx2 = useContext(LanguageCtx)
+  const [height, setHeight] = useState(document.documentElement.clientHeight)
+  const [width, setWidth] = useState(document.documentElement.clientWidth)
+  const handleResize = function () {
+    const { width, height } = document.documentElement.getBoundingClientRect()
+    setWidth(() => width)
+    setHeight(() => height)
+  }
+
+  useEffect(function () {
+    window.addEventListener("resize", handleResize)
+    window.addEventListener("contextmenu", (e) => e.preventDefault())
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   return (
-    <div
-      className={styles.body}
-      style={{ background: type === "dark" ? "#000" : "#fff" }}
-      onClick={() => toggleTheme(type === "dark" ? "light" : "dark")}
-    ></div>
+    <div className={styles.desktop}>
+      <ClientCtx.Provider value={{ width, height }}>
+        <TaskBar />
+        <WorkSpace height={height - 24} />
+      </ClientCtx.Provider>
+    </div>
   )
 }

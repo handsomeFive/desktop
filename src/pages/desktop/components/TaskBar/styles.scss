@@ -1,0 +1,17 @@
+.taskBar {
+  height: 24px;
+  background-color: #dadada;
+  padding: 0 20px;
+  display: flex;
+}
+.icon {
+  line-height: 24px;
+  color: #202020;
+  margin-right: 20px;
+}
+.functionBar {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

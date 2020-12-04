@@ -33,8 +33,14 @@ function getConfig(mode) {
             "style-loader",
             {
               loader: "css-loader",
-              options: {
+              options: {                
                 modules: {
+                  mode: (resourcePath) => {
+                    if (/index.css$/i.test(resourcePath)) {
+                      return "global"
+                    }            
+                    return "local"
+                  },
                   localIdentName:
                     mode === "development"
                       ? "[path]-[local]-[hash:base64:5]"
@@ -99,7 +105,7 @@ module.exports = function (env, argv) {
   if (argv.mode === "development") {
     _config.devtool = "source-map"
     _config.devServer = {
-      port: 3000,
+      port: 5000,
       historyApiFallback: true,
       overlay: {
         //当出现编译器错误或警告时，就在网页上显示一层黑色的背景层和错误信息

@@ -26,5 +26,5 @@ export const language: Context = {
   toggleLanguage: () => {},
 }
 
-export const ThemeCtx = React.createContext(theme)
-export const LanguageCtx = React.createContext(language)
+export const ThemeCtx = React.createContext<Context>(theme)
+export const LanguageCtx = React.createContext<Context>(language)

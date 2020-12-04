@@ -6,7 +6,7 @@ import {
   ThemeCtx,
   ETheme,
   ELanguage,
-} from "@/config/context"
+} from "@/config/context/global"
 import Desktop from "@/pages/desktop"
 
 export default function App() {
