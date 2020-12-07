@@ -4,15 +4,18 @@ const menu: ApplicationMenuItem[] = [
   {
     id: "",
     name: "",
-    handleType: "",
-    applicationId: "",    
-    subMenu: [],                           
+    handleId: "",
+    applicationId: "",
+    subMenu: [],
   },
 ]
 const config: Application = {
   id: "",
+  name: "计算器",
   icon: "",
   type: "system",
   isSingle: true,
 }
-export { menu, config }
+const contextMenu:ApplicationMenuItem[] = []
+
+export default { menu, config, contextMenu }

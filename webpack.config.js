@@ -33,12 +33,12 @@ function getConfig(mode) {
             "style-loader",
             {
               loader: "css-loader",
-              options: {                
+              options: {
                 modules: {
                   mode: (resourcePath) => {
                     if (/index.css$/i.test(resourcePath)) {
                       return "global"
-                    }            
+                    }
                     return "local"
                   },
                   localIdentName:
@@ -105,6 +105,7 @@ module.exports = function (env, argv) {
   if (argv.mode === "development") {
     _config.devtool = "source-map"
     _config.devServer = {
+      open: true,
       port: 5000,
       historyApiFallback: true,
       overlay: {

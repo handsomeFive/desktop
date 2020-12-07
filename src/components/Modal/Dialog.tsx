@@ -1,3 +1,4 @@
+import { ApplicationContextMenuItem } from "@/data/appliction/types"
 import React, { useEffect, useState } from "react"
 import ReactDom from "react-dom"
 import Modal from "./Modal"
@@ -10,7 +11,7 @@ enum DialogType {
 interface MenuConfig {
   x: number;
   y: number;
-  menuList: [];
+  menuList: ApplicationContextMenuItem[];
 }
 
 interface OpenConfig {
@@ -23,6 +24,7 @@ let openDialog = (config: OpenConfig) => {}
 
 function Dialog() {
   const [show, setShow] = useState(false)
+  const [config,setConfig] = useState()
 
   useEffect(function () {
     openDialog = (config: OpenConfig) => {
@@ -30,7 +32,14 @@ function Dialog() {
     }
   }, [])
 
-  return <Modal open={show} />
+  return (
+    <Modal
+      open={show}
+      onClose={() => {
+        setShow(false)
+      }}
+    ></Modal>
+  )
 }
 
 if (typeof window !== "undefined") {

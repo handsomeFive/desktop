@@ -1,10 +1,20 @@
 import Dialog from "@/components/Modal/Dialog"
-import Modal from "@/components/Modal/Modal"
+import { ApplicationContextMenuItem } from "@/data/appliction/types"
 import React, { useEffect, useRef } from "react"
 
 interface Props {
   height: number;
 }
+
+const contextMenu: ApplicationContextMenuItem[] = [
+  {
+    id: "workspace_contextmenu_1",
+    name: "刷新",
+    handleId: "handleId_workspace_contextmenu_refresh",
+    subMenu: [],
+    applicationId: null,
+  },
+]
 
 export default function WorkSpace(props: Props) {
   const workspaceRef = useRef<HTMLDivElement>(null)
@@ -16,7 +26,7 @@ export default function WorkSpace(props: Props) {
         e: MouseEvent
       ) {
         const { pageX, pageY } = e
-        Dialog.menu({ x: pageX, y: pageX })
+        Dialog.menu({ x: pageX, y: pageY, menuList: contextMenu })
       })
     }
     return () => {}

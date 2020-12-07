@@ -1,10 +1,11 @@
-import {
-  menu as calculatorMenu,
-  config as calculatorConfig,
-} from "./calculator"
+import calculator from "./calculator"
 
-const applicationList = [
-  calculatorConfig
-]
+const applicationList = [calculator.config]
 
-export { applicationList }
+const menuMap = {
+  [calculator.config.id]: calculator.menu,
+}
+const contextMenuMap = {
+  [calculator.config.id]: calculator.contextMenu,
+}
+export { applicationList, menuMap, contextMenuMap }
